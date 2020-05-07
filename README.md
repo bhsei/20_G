@@ -24,7 +24,7 @@ Flask是一个使用 Python语言编写的轻量级 Web 应用框架，本项目
 
 
 ## 参考资料
-[1] GB/T 9385-2008  计算机软件需求规格说明 
+[1] GB/T 9385-2008  计算机软件需求规格说明
 [2] GB/T 8567-2006  计算机软件文档编制规范
 [3] Bootstrap官方文档 https://getbootstrap.net/docs/getting-started/introduction/
 [4] Flask官方文档 https://flask.palletsprojects.com/en/1.1.x/
