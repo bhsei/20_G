@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>管理员登录-基于Flask框架的艺术创作平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/css/-Login-form-Page-BS4-.css">
+    <link rel="stylesheet" href="/static/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-DataTables.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-Image-Uploader.css">
+    <link rel="stylesheet" href="/static/css/Custom-Upload-File.css">
+    <link rel="stylesheet" href="/static/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="/static/css/Drag-Drop-File-Upload.css">
+    <link rel="stylesheet" href="/static/css/Dynamic-Table-1.css">
+    <link rel="stylesheet" href="/static/css/Elegant-Registration-Form.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="/static/css/mycss.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Product-List.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="/static/css/Pretty-User-List.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form-1.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search.css">
+    <link rel="stylesheet" href="/static/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+        <div class="container"><a class="navbar-brand border rounded shadow-lg logo" href="{{ buildUrl('/') }}" target="_blank">艺术创作平台</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation" id="navbarNavli1"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/') }}">网站主页</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli7"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/ViewAllWorks') }}">全网动态</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli2"><a class="nav-link border rounded shadow-lg active" href="{{ buildUrl('/projectIntroduction') }}">项目介绍</a></li>
+                    {% if current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli5"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('createArtPicture')}}">欢迎{% if current_user: %} {{current_user.email }} {% endif%}进行创作</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli8"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/viewMyPost')}}">我的作品</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli6"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/logout') }}">退出</a></li>
+                    {% endif%}
+                    {% if not current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli3"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberRegister') }}">注册</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli4"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberLogin') }}">登录</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Start: ♣ Login form Page BS4 ♣ -->
+    <div class="container-fluid">
+        <div class="row mh-100vh">
+            <div class="col-10 col-sm-8 col-md-6 col-lg-6 offset-1 offset-sm-2 offset-md-3 offset-lg-0 align-self-center d-lg-flex align-items-lg-center align-self-lg-stretch bg-white p-5 rounded rounded-lg-0 my-5 my-lg-0" id="login-block">
+                <div class="m-auto w-lg-75 w-xl-50">
+                    <h2 class="bg-light shadow-lg text-info font-weight-light mb-5"><i class="fa fa-diamond"></i>&nbsp;管理员登录</h2>
+                    <form>
+                        <div class="form-group"><label class="text-secondary">请输入您的管理员账号：</label><input id="adminEmail" class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email" placeholder="管理员邮箱"></div>
+                        <div class="form-group"><label class="text-secondary">请输入您的密码：</label><input id="adminPassword" class="form-control" type="password" required="" placeholder="管理员密码"></div><button class="btn btn-info mt-2" type="submit" onclick="check()">&nbsp;登录</button></form>
+                    <p class="mt-3 mb-0"></p>
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-image:url(&quot;/static/img/aldain-austria-316143-unsplash.jpg&quot;);background-size:cover;background-position:center center;">
+                <p class="ml-auto small text-dark mb-2"></p>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links"><a href="/aboutAndContactUs">关于我们</a><a href="/aboutAndContactUs">联系我们</a><a href="/projectIntroduction">项目介绍</a></div>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/Bootstrap-DataTables.js"></script>
+    <script src="/static/js/Bootstrap-Image-Uploader.js"></script>
+    <script src="/static/js/Custom-Upload-File.js"></script>
+    <script src="/static/js/Dynamic-Table-1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="/static/js/Table-With-Search.js"></script>
+    <script src="/static/js/theme.js"></script>
+    <script>
+        function check() {
+            var email = eval(document.getElementById("adminEmail")).value.toString();
+            var login_pwd = eval(document.getElementById("adminPassword")).value.toString();
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/adminLogin",//后端请求处理的路径
+                data:{ 'email':email,'login_pwd':login_pwd },
+                success: function(resp) {
+                    if(resp.code==200){
+                        alert("管理员登录成功！"+resp.msg);
+                        window.location.href ="http://49.233.31.42:8999/adminHome";
+                    }else if(resp.code == 400){
+                        alert("管理员登录失败！"+resp.msg);
+                    }
+                    },
+                error: function (result) {
+                    alert("发生未知错误！请检查自己的网络。"+result);
+                }
+            });
+
+            return true;
+        }
+
+
+    </script>
+</body>
+
+</html>

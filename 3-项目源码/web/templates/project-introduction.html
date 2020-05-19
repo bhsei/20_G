@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>项目介绍-基于Flask框架的艺术创作平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/css/-Login-form-Page-BS4-.css">
+    <link rel="stylesheet" href="/static/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-DataTables.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-Image-Uploader.css">
+    <link rel="stylesheet" href="/static/css/Custom-Upload-File.css">
+    <link rel="stylesheet" href="/static/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="/static/css/Drag-Drop-File-Upload.css">
+    <link rel="stylesheet" href="/static/css/Dynamic-Table-1.css">
+    <link rel="stylesheet" href="/static/css/Elegant-Registration-Form.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="/static/css/mycss.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Product-List.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="/static/css/Pretty-User-List.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form-1.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search.css">
+    <link rel="stylesheet" href="/static/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+        <div class="container"><a class="navbar-brand border rounded shadow-lg logo" href="{{ buildUrl('/') }}" target="_blank">艺术创作平台</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation" id="navbarNavli1"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/') }}">网站主页</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli7"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/ViewAllWorks') }}">全网动态</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli2"><a class="nav-link border rounded shadow-lg active" href="{{ buildUrl('/projectIntroduction') }}">项目介绍</a></li>
+                    {% if current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli5"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('createArtPicture')}}">欢迎{% if current_user: %} {{current_user.email }} {% endif%}进行创作</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli8"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/viewMyPost')}}">我的作品</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli6"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/logout') }}">退出</a></li>
+                    {% endif%}
+                    {% if not current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli3"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberRegister') }}">注册</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli4"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberLogin') }}">登录</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page projects-page">
+        <section class="portfolio-block projects-cards">
+            <!-- Start: Animated CSS Waves Background (SVG) --><div class="svg-container">
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div>
+</div>
+
+	
+            <!-- End: Animated CSS Waves Background (SVG) -->
+            <!-- Start: ceryliae 1 -->
+            <div class="container">
+                <div class="block-heading">
+                    <p></p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card clean-testimonial-item border-0 rounded-0">
+                            <div class="card-body border rounded shadow-lg">
+                                <h3 class="shadow-lg"><strong>艺术化处理照片</strong><br></h3>
+                                <p class="card-text"><br>我们使用人工智能算法，它可以使用一幅图像的样式元素来绘制另一幅图像的内容，而且仅需三个步骤即可获得您自己的艺术品：<br>1.上传照片；<br>2.选择款式；<br>3.提交。<br></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card clean-testimonial-item border-0 rounded-0">
+                            <div class="card-body border rounded shadow-lg">
+                                <h3 class="shadow-lg"><strong>自定义照片数据集</strong><br></h3>
+                                <p class="card-text"><br>除了公共数据集之外，我们还支持用户上传、维护自己的私有数据集，在数据集界面中，可以<strong>上传数据集</strong>，在现阶段，我们只提供上传不大于50M的数据集的功能。<br><br><br></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card clean-testimonial-item border-0 rounded-0">
+                            <div class="card-body border rounded shadow">
+                                <h3 class="shadow-lg"><strong>与有品位的人交往</strong><br></h3>
+                                <p class="card-text"><br>一些心爱的照片不想发在朋友圈里，但却又想让一些朋友看见，分享自己内心的喜悦。我们这里是一个小清新的聚集地，可以认识很多有趣的小伙伴呀~<br><br><br></p>
+                            </div>
+                        </div>
+                        <div class="card clean-testimonial-item border-0 rounded-0"></div>
+                    </div>
+                </div>
+                <div class="text-center"></div>
+            </div>
+            <!-- End: ceryliae 1 -->
+            <div class="container">
+                <!-- Start: portfolio heading -->
+                <div class="heading">
+                    <h2 class="text-info">项目介绍</h2>
+                </div>
+                <!-- End: portfolio heading -->
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/21styles/la_muse.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">抽象画风</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/21styles/candy.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">地球蒲公英</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/21styles/mosaic.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">美女电子轨道</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/nature/1.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">眼睛与宇宙</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/21styles/rain_princess.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">雨天撑伞女孩</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/nature/3.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">老人与方糖</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/21styles/wave.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">海浪</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/21styles/shipwreck.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">波涛汹涌</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="/static/img/21styles/starry_night.jpg" alt="Card Image"></a>
+                            <div class="card-body">
+                                <h6><a href="#">星空</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links"><a href="/aboutAndContactUs">关于我们</a><a href="/aboutAndContactUs">联系我们</a><a href="/projectIntroduction">项目介绍</a></div>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/Bootstrap-DataTables.js"></script>
+    <script src="/static/js/Bootstrap-Image-Uploader.js"></script>
+    <script src="/static/js/Custom-Upload-File.js"></script>
+    <script src="/static/js/Dynamic-Table-1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="/static/js/Table-With-Search.js"></script>
+</body>
+
+</html>

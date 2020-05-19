@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>创建艺术图片-基于Flask框架的艺术创作平台</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/css/-Login-form-Page-BS4-.css">
+    <link rel="stylesheet" href="/static/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-DataTables.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-Image-Uploader.css">
+    <link rel="stylesheet" href="/static/css/Custom-Upload-File.css">
+    <link rel="stylesheet" href="/static/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="/static/css/Drag-Drop-File-Upload.css">
+    <link rel="stylesheet" href="/static/css/Dynamic-Table-1.css">
+    <link rel="stylesheet" href="/static/css/Elegant-Registration-Form.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="/static/css/mycss.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Product-List.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="/static/css/Pretty-User-List.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form-1.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search.css">
+    <link rel="stylesheet" href="/static/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
+    <style>
+        img{
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            padding:10px;
+            border:1px solid #343a40;
+            -moz-box-shadow:3px 3px 4px #000;
+            -webkit-box-shadow:3px 3px 4px #000;
+            box-shadow:8px 10px 12px #000;
+            background:#fff;
+            filter:progid:DXImageTransform.Microsoft.Shadow(Strength=4,Direction=135,Color='#000000');
+        }
+        #selectStyle {
+		    display: inline-block;
+		    width: 300px;
+		    position: relative;
+		    vertical-align: middle;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: #fff;
+		    color: #555;
+		    border: 1px solid #aaa;
+		    text-shadow: none;
+		    border-radius: 4px;
+		    transition: box-shadow 0.25s ease;
+		    z-index: 2;
+	    }
+        #selectStyle:hover {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+	    #selectStyle:before {
+		    content: "";
+		    position: absolute;
+		    width: 0;
+		    height: 0;
+		    border: 10px solid transparent;
+		    border-top-color: #ccc;
+		    top: 14px;
+		    right: 10px;
+		    cursor: pointer;
+		    z-index: -2;
+	    }
+	    #selectStyle select {
+		    cursor: pointer;
+		    padding: 10px;
+		    width: 100%;
+		    border: none;
+		    background: transparent;
+		    background-image: none;
+		    -webkit-appearance: none;
+		    -moz-appearance: none;
+	    }
+
+	    #selectStyle select:focus {
+		    outline: none;
+	    }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+        <div class="container"><a class="navbar-brand border rounded shadow-lg logo" href="{{ buildUrl('/') }}" target="_blank">艺术创作平台</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation" id="navbarNavli1"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/') }}">网站主页</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli7"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/ViewAllWorks') }}">全网动态</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli2"><a class="nav-link border rounded shadow-lg active" href="{{ buildUrl('/projectIntroduction') }}">项目介绍</a></li>
+                    {% if current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli5"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('createArtPicture')}}">欢迎{% if current_user: %} {{current_user.email }} {% endif%}进行创作</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli8"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/viewMyPost')}}">我的作品</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli6"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/logout') }}">退出</a></li>
+                    {% endif%}
+                    {% if not current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli3"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberRegister') }}">注册</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli4"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberLogin') }}">登录</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page projects-page">
+        <section class="portfolio-block projects-cards">
+
+            <div class="container">
+                <div align="center">
+                    <h3><strong>风格选择与上传图片</strong></h3>
+                </div>
+                <form id="pictureFORM" enctype='multipart/form-data' method='POST'>
+                    <div align="center">
+                        <select name="selectStyle" id="selectStyle" value="1">
+                            <option value="1">风格 1</option>
+                            <option value="2">风格 2</option>
+                            <option value="3">风格 3</option>
+                            <option value="4">风格 4</option>
+                            <option value="5">风格 5</option>
+                            <option value="6">风格 6</option>
+                            <option value="7">风格 7</option>
+                            <option value="8">风格 8</option>
+                            <option value="9">风格 9</option>
+                            <option value="10">风格 10</option>
+                            <option value="11">风格 11</option>
+                            <option value="12">风格 12</option>
+                            <option value="13">风格 13</option>
+                            <option value="14">风格 14</option>
+                            <option value="15">风格 15</option>
+                            <option value="16">风格 16</option>
+                            <option value="17">风格 17</option>
+                            <option value="18">风格 18</option>
+                            <option value="19">风格 19</option>
+                            <option value="20">风格 20</option>
+                            <option value="21">风格 21</option>
+                        </select>
+                        <div align = "center" id="styleImage">
+                            <img id="style1" style = "display:inherit;" src="static/styles/style1.jpg">
+                            <img id="style2" style = "display:none;" src="static/styles/style2.jpg">
+                            <img id="style3" style = "display:none;" src="static/styles/style3.jpg">
+                            <img id="style4" style = "display:none;" src="static/styles/style4.jpg">
+                            <img id="style5" style = "display:none;" src="static/styles/style5.jpg">
+                            <img id="style6" style = "display:none;" src="static/styles/style6.jpg">
+                            <img id="style7" style = "display:none;" src="static/styles/style7.jpg">
+                            <img id="style8" style = "display:none;" src="static/styles/style8.jpg">
+                            <img id="style9" style = "display:none;" src="static/styles/style9.jpg">
+                            <img id="style10" style = "display:none;" src="static/styles/style10.jpg">
+                            <img id="style11" style = "display:none;" src="static/styles/style11.jpg">
+                            <img id="style12" style = "display:none;" src="static/styles/style12.jpg">
+                            <img id="style13" style = "display:none;" src="static/styles/style13.jpg">
+                            <img id="style14" style = "display:none;" src="static/styles/style14.jpg">
+                            <img id="style15" style = "display:none;" src="static/styles/style15.jpg">
+                            <img id="style16" style = "display:none;" src="static/styles/style16.jpg">
+                            <img id="style17" style = "display:none;" src="static/styles/style17.jpg">
+                            <img id="style18" style = "display:none;" src="static/styles/style18.jpg">
+                            <img id="style19" style = "display:none;" src="static/styles/style19.jpg">
+                            <img id="style20" style = "display:none;" src="static/styles/style20.jpg">
+                            <img id="style21" style = "display:none;" src="static/styles/style21.jpg">
+                        </div>
+                    </div>
+                    <div class="form-group files color">
+                        <h5>&nbsp;<h5>
+                        <h3 align="center">选择图片上传（只支持.jpg格式）</h3>
+                            <input type="file" accept=".jpg," multiple="" name="file" required>
+                    </div>
+                    <h1 align="center"><input type="submit" class="btn btn-primary" multiple="" value="提交图片"></h1>
+                </form>
+                <h1 id="showHeading" style="display:none;"><br>您的艺术化图片:</h1>
+                <div id="showPicture" style="display:none;border:2px solid #9bdf70;background:#f0fbeb" align="center"><img id="showPictureSrc" src="static/img/resultImage.jpg"></div>
+                <div id="textOfPicture" style="display:none;" align="center">
+                    <h1><br>发布作品配字</h1><textarea id="myTextAboutTheWorks" style="border:2px;border-radius:20px;background-color:rgba(200,241,210,.98);width: 500px;height: 150px;padding: 10px;resize: none;" placeholder="今天心情不错，画了张图..." size="100"></textarea></div>
+                <div id="textButton" style="display:none" align="center">
+                    <button class="btn btn-primary" type="button" onclick="submitText()">保存作品</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links"><a href="/aboutAndContactUs">关于我们</a><a href="/aboutAndContactUs">联系我们</a><a href="/projectIntroduction">项目介绍</a></div>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/Bootstrap-DataTables.js"></script>
+    <script src="/static/js/Bootstrap-Image-Uploader.js"></script>
+    <script src="/static/js/Custom-Upload-File.js"></script>
+    <script src="/static/js/Dynamic-Table-1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="/static/js/loginandout.js"></script>
+    <script src="/static/js/Table-With-Search.js"></script>
+    <script src="/static/js/theme.js"></script>
+    <script>
+        $("#selectStyle").change(function() {
+            document.getElementById("style1").style = "display:none;";
+            document.getElementById("style2").style = "display:none;";
+            document.getElementById("style3").style = "display:none;";
+            document.getElementById("style4").style = "display:none;";
+            document.getElementById("style5").style = "display:none;";
+            document.getElementById("style6").style = "display:none;";
+            document.getElementById("style7").style = "display:none;";
+            document.getElementById("style8").style = "display:none;";
+            document.getElementById("style9").style = "display:none;";
+            document.getElementById("style10").style = "display:none;";
+            document.getElementById("style11").style = "display:none;";
+            document.getElementById("style12").style = "display:none;";
+            document.getElementById("style13").style = "display:none;";
+            document.getElementById("style14").style = "display:none;";
+            document.getElementById("style15").style = "display:none;";
+            document.getElementById("style16").style = "display:none;";
+            document.getElementById("style17").style = "display:none;";
+            document.getElementById("style18").style = "display:none;";
+            document.getElementById("style19").style = "display:none;";
+            document.getElementById("style20").style = "display:none;";
+            document.getElementById("style21").style = "display:none;";
+
+            var selectValue = document.getElementById("selectStyle").value.toString();
+
+            var img = document.getElementById("style"+selectValue);
+            img.style = "display:inherit;";
+
+            return true;
+        });
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>用户个人中心-基于Flask框架的艺术创作平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/css/-Login-form-Page-BS4-.css">
+    <link rel="stylesheet" href="/static/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-DataTables.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-Image-Uploader.css">
+    <link rel="stylesheet" href="/static/css/Custom-Upload-File.css">
+    <link rel="stylesheet" href="/static/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="/static/css/Drag-Drop-File-Upload.css">
+    <link rel="stylesheet" href="/static/css/Dynamic-Table-1.css">
+    <link rel="stylesheet" href="/static/css/Elegant-Registration-Form.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="/static/css/mycss.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Product-List.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="/static/css/Pretty-User-List.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form-1.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search.css">
+    <link rel="stylesheet" href="/static/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+        <div class="container"><a class="navbar-brand border rounded shadow-lg logo" href="{{ buildUrl('/') }}" target="_blank">艺术创作平台</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation" id="navbarNavli1"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/') }}">网站主页</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli7"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/ViewAllWorks') }}">全网动态</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli2"><a class="nav-link border rounded shadow-lg active" href="{{ buildUrl('/projectIntroduction') }}">项目介绍</a></li>
+                    {% if current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli5"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('createArtPicture')}}">欢迎{% if current_user: %} {{current_user.email }} {% endif%}进行创作</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli8"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/viewMyPost')}}">我的作品</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli6"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/logout') }}">退出</a></li>
+                    {% endif%}
+                    {% if not current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli3"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberRegister') }}">注册</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli4"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberLogin') }}">登录</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page lanidng-page">
+        <section class="text-center portfolio-block block-intro">
+            <h1 align="center">&nbsp; &nbsp; 我的资料</h1>
+            <!-- Start: User Information Panel - Lite + Secondary User (Pa -->
+            <div class="card">
+                <div class="card-body">
+                    <p><span class="text-muted">邮箱：{{current_user.email}} </span></p>
+                    <p><span class="text-muted">注册时间：{{current_user.created_time }} </span></p>
+                </div>
+            </div>
+            <!-- End: User Information Panel - Lite + Secondary User (Pa -->
+        </section>
+        <section class="portfolio-block call-to-action border-bottom">
+            <h1 align="center">我的动态</h1>
+            <!-- Start: Pretty Product List -->
+            <div class="row product-list">
+                {% if list %}
+                    {% for item in list %}
+                    <div class="col-sm-6 col-md-4 product-item">
+                    <div id="container1" class="product-container">
+                          <div class="row">
+                            <div class="col-md-12"><img id="userWorks1" src="{{ item.imageUrl}}" width="100%" alt="默认图片"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <strong id="userWorks1Text" class="product-description">{{ item.tag }}</strong>
+                            </div>
+                            <div class="col-12"><strong id="time1" align="right">{{ item.time  }}</strong></div>
+                        </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        </section>
+    </main>
+    <section class="portfolio-block website gradient">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-5 offset-lg-1 text">
+                    <h3>项目介绍</h3>
+                    <p>本项目为北航计算机学院《软件工程实验》课程2019级硕士G组成员的作品！</p>
+                </div>
+                <div class="col-md-12 col-lg-5">
+                    <div class="portfolio-laptop-mockup">
+                        <div class="screen">
+                            <div class="screen-content" style="background-image:url(&quot;/static/img/buaa/buaaNMB.jpg&quot;);"></div>
+                        </div>
+                        <div class="keyboard"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links"><a href="/aboutAndContactUs">关于我们</a><a href="/aboutAndContactUs">联系我们</a><a href="/projectIntroduction">项目介绍</a></div>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/Bootstrap-DataTables.js"></script>
+    <script src="/static/js/Bootstrap-Image-Uploader.js"></script>
+    <script src="/static/js/Custom-Upload-File.js"></script>
+    <script src="/static/js/Dynamic-Table-1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="/static/js/Table-With-Search.js"></script>
+</body>
+
+</html>

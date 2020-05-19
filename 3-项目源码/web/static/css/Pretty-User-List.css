@@ -1,0 +1,55 @@
+.user-item {
+  padding: 10px;
+  position: relative;
+}
+
+.user-item div.user-container {
+  text-align: left;
+  font: normal 14px sans-serif;
+  background-color: #f4f8fa;
+  border: 1px solid #dbe3e7;
+  box-shadow: 0 2px 3px #dbe3e7;
+  padding-right: 50px;
+  overflow: hidden;
+}
+
+.user-item a.user-avatar {
+  float: left;
+  padding: 10px 15px;
+}
+
+.user-item p.user-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 19px 0 0;
+}
+
+.user-item p.user-name a {
+  color: #5d6569;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.user-item p.user-name span {
+  display: block;
+  font-size: 11px;
+  color: #808d93;
+  padding-top: 4px;
+}
+
+.user-item a.user-delete {
+  background-color: #de4a4a;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
+  line-height: 23px;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  text-align: center;
+  text-decoration: none;
+}
+

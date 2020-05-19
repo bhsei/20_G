@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+SERVER_PORT = 8999
+# DEBUG = False
+# SQLALCHEMY_ECHO = False
+
+AUTH_COOKIE_NAME="bh_g"
+DEBUG = True
+SQLALCHEMY_ECHO = True
+SQLALCHEMY_DATABASE_URI = 'mysql://root:Aa12345@@127.0.0.1/ArtPlatform_db'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_ENCODING = "utf8mb4"
+
+UPLOAD_FOLDER = '/web/static/uploads'

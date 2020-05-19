@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="centos@49.233.31.42:22 (1)">
+    <serverData>
+      <paths name="centos@49.233.31.42:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="centos@49.233.31.42:22 (1)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/centos/artPlateform" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@140.143.126.17:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/artplatform" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@140.143.126.17:22 (1)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/artplatform" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@49.233.199.242:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@49.233.199.242:22 (1)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@49.233.199.242:22 (5)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@49.233.199.242:22 (7)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="ruangong">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/artplatform" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="ruangongshiyan">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/artplatform" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="ubuntu@140.143.126.17:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/artplatform" local="$PROJECT_DIR$" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

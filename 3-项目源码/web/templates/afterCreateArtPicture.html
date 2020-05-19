@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>效果展示-基于Flask框架的艺术创作平台</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/css/-Login-form-Page-BS4-.css">
+    <link rel="stylesheet" href="/static/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-DataTables.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-Image-Uploader.css">
+    <link rel="stylesheet" href="/static/css/Custom-Upload-File.css">
+    <link rel="stylesheet" href="/static/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="/static/css/Drag-Drop-File-Upload.css">
+    <link rel="stylesheet" href="/static/css/Dynamic-Table-1.css">
+    <link rel="stylesheet" href="/static/css/Elegant-Registration-Form.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="/static/css/mycss.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Product-List.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="/static/css/Pretty-User-List.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form-1.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search.css">
+    <link rel="stylesheet" href="/static/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+        <div class="container"><a class="navbar-brand border rounded shadow-lg logo" href="{{ buildUrl('/') }}" target="_blank">艺术创作平台</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation" id="navbarNavli1"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/') }}">网站主页</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli7"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/ViewAllWorks') }}">全网动态</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli2"><a class="nav-link border rounded shadow-lg active" href="{{ buildUrl('/projectIntroduction') }}">项目介绍</a></li>
+                    {% if current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli5"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('createArtPicture')}}">欢迎{% if current_user: %} {{current_user.email }} {% endif%}进行创作</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli8"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/viewMyPost')}}">我的作品</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli6"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/logout') }}">退出</a></li>
+                    {% endif%}
+                    {% if not current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli3"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberRegister') }}">注册</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli4"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberLogin') }}">登录</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page projects-page">
+        <section class="portfolio-block projects-cards">
+
+            <div class="container">
+                <h1 id="showHeading" ><br>您原本的照片:</h1>
+                <div id="showPicture" style="border:2px solid #9bdf70;background:#ffe8a1" align="center">
+                    <img id="showPictureSrc" src="{{info.photo_imageurl}}">
+                </div>
+                <h1><br>您的艺术化照片:</h1>
+                <div style="border:2px solid #9bdf70;background:#b1dfbb" align="center">
+                    <img src="{{info.transfer_photo_imageurl}}">
+                </div>
+                <form action="" name="textFORM" enctype='multipart/form-data' method='POST'>
+                    <div id="textOfPicture" align="center">
+                        <h1><br>发布作品配字</h1>
+                        <textarea name="workText" id="myTextAboutTheWorks" style="border:2px;border-radius:20px;background-color:rgba(200,241,210,.98);width: 500px;height: 150px;padding: 10px;resize: none;" placeholder="今天心情不错，画了张图，我可真是心灵手巧..." size="100">
+                        </textarea>
+                    </div>
+                    <div id="textButton"  align="center">
+                        <input class="btn btn-primary" type="submit">保存作品</input>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links"><a href="/aboutAndContactUs">关于我们</a><a href="/aboutAndContactUs">联系我们</a><a href="/projectIntroduction">项目介绍</a></div>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/Bootstrap-DataTables.js"></script>
+    <script src="/static/js/Bootstrap-Image-Uploader.js"></script>
+    <script src="/static/js/Custom-Upload-File.js"></script>
+    <script src="/static/js/Dynamic-Table-1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="/static/js/Table-With-Search.js"></script>
+    <script src="/static/js/theme.js"></script>
+    <script>
+
+
+    </script>
+</body>
+
+</html>

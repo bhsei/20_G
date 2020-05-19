@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>管理员个人中心-基于Flask框架的艺术创作平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/css/-Login-form-Page-BS4-.css">
+    <link rel="stylesheet" href="/static/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-DataTables.css">
+    <link rel="stylesheet" href="/static/css/Bootstrap-Image-Uploader.css">
+    <link rel="stylesheet" href="/static/css/Custom-Upload-File.css">
+    <link rel="stylesheet" href="/static/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="/static/css/Drag-Drop-File-Upload.css">
+    <link rel="stylesheet" href="/static/css/Dynamic-Table-1.css">
+    <link rel="stylesheet" href="/static/css/Elegant-Registration-Form.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_no-more-tables.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table-1.css">
+    <link rel="stylesheet" href="/static/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="/static/css/mycss.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Product-List.css">
+    <link rel="stylesheet" href="/static/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="/static/css/Pretty-User-List.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form-1.css">
+    <link rel="stylesheet" href="/static/css/responsive-registration-form.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="/static/css/Table-With-Search.css">
+    <link rel="stylesheet" href="/static/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+        <div class="container"><a class="navbar-brand border rounded shadow-lg logo" href="{{ buildUrl('/') }}" target="_blank">&nbsp; 基于Flask框架的艺术创作平台&nbsp;&nbsp;</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation" id="navbarNavli1"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/') }}">网站主页</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli2"><a class="nav-link border rounded shadow-lg active" href="{{ buildUrl('/projectIntroduction') }}">项目介绍</a></li>
+                    {% if current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli5"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('createArtPicture')}}">欢迎{% if current_user: %} {{current_user.email }} {% endif%}</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli6"><a class="nav-link border rounded shadow-lg" href="{{ buildUrl('/logout') }}">退出</a></li>
+                    {% endif%}
+                    {% if not current_user: %}
+                    <li class="nav-item" role="presentation" id="navbarNavli3"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberRegister') }}">注册</a></li>
+                    <li class="nav-item" role="presentation" id="navbarNavli4"><a class="nav-link border rounded shadow" href="{{ buildUrl('/memberLogin') }}">登录</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page cv-page">
+        <section class="portfolio-block block-intro border-bottom">
+            <div class="container">
+                <div class="about-me">
+                    <p class="bg-danger border rounded border-warning shadow">欢迎 管理员</p>
+                </div>
+            </div>
+        </section>
+        <section class="portfolio-block cv">
+            <div class="container">
+                <h1 class="bg-secondary border rounded shadow-lg" align="center">用户列表</h1>
+                <!-- Start: Table With Search -->
+
+
+                        <table class="table table-bordered table-hover">
+                            <thead class="bill-header cs">
+                                <tr>
+                                    <th id="xuhao" class="col-lg-1" style="width: 10%;">序号</th>
+                                    <th id="youxiang" class="col-lg-3" style="width: 18%;">邮箱</th>
+                                    <th id="zhuceshijian" class="col-lg-2" style="width: 10%;">注册时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% if member_list %}
+                                    {% for item in member_list %}
+                                <tr id="tr1">
+                                    <td id="td11" align="center">{{item.id}}</td>
+                                    <td id="td12" align="center">{{item.email}}</td>
+                                    <td id="td13" align="center">{{item.time}}</td>
+                                 </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End: Table With Search -->
+            </div>
+        </section>
+        <section class="portfolio-block cv">
+            <h1 class="bg-primary shadow-lg" align="center">作品列表</h1>
+            <div class="container">
+                    <div class="table-responsive table-bordered table table-hover table-bordered results">
+                        <table class="table table-bordered table-hover">
+                            <thead class="bill-header cs">
+                                <tr>
+                                    <th id="lingyigexuhao" class="col-lg-1" style="width: 10%;">序号</th>
+                                    <th id="fenggemingcheng" class="col-lg-2" style="width: 16%;">作品标签</th>
+                                    <th id="chuangjianyonghu" class="col-lg-2" style="width: 16%;">创建用户</th>
+                                    <th id="chuangjianshijian" class="col-lg-2" style="width: 10%;">创建时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% if work_list %}
+                                    {% for item in work_list %}
+                                <tr id="tr1s">
+                                    <td id="td11s" align="center">{{item.id}}</td>
+                                    <td id="td12s" align="center">{{item.tag}}</td>
+                                    <td id="td14s" align="center">{{item.nickname}}</td>
+                                    <td id="td15s" align="center">{{item.time}}</td>
+                                </tr>
+                            {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End: Table With Search -->
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links"><a href="/aboutAndContactUs">关于我们</a><a href="/aboutAndContactUs">联系我们</a><a href="/projectIntroduction">项目介绍</a></div>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/Bootstrap-DataTables.js"></script>
+    <script src="/static/js/Bootstrap-Image-Uploader.js"></script>
+    <script src="/static/js/Custom-Upload-File.js"></script>
+    <script src="/static/js/Dynamic-Table-1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="/static/js/Table-With-Search.js"></script>
+    <script src="/static/js/theme.js"></script>
+    <script>
+        $(document).ready(function() {
+            var tr1 = document.getElementById("tr1");
+            var tr2 = document.getElementById("tr2");
+            var tr3 = document.getElementById("tr3");
+            var tr4 = document.getElementById("tr4");
+            tr1.style = "display:none;";
+            tr2.style = "display:none;";
+            tr3.style = "display:none;";
+            tr4.style = "display:none;";
+            //隐藏用户列表4个行的标签
+
+            var tr1s = document.getElementById("tr1s");
+            var tr2s = document.getElementById("tr2s");
+            var tr3s = document.getElementById("tr3s");
+            var tr4s = document.getElementById("tr4s");
+            tr1s.style = "display:none;";
+            tr2s.style = "display:none;";
+            tr3s.style = "display:none;";
+            tr4s.style = "display:none;";
+            //隐藏风格列表4个行的标签
+
+            var i = 0;
+            for (i = 0; i < 4; i++) {
+                //循环获取用户列表，暂时用户只做4行数据
+                alert("成功进入用户的for循环第" + (i + 1) + "轮");
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "/adminManage",//后端请求处理的路径
+                    data: {'type':'user','i': i},//type表示现在获取的是用户列表的数据
+                    //前端需要后端返回的response里有code、昵称、邮件、手机号码和注册时间，其中code用于提示是否成功
+                    success: function (resp) {
+                        if (resp.code == 200) {
+                            alert("获取用户列表成功");
+                            //下面是往html中填写数据
+                            tr = document.getElementById("tr" + (i + 1));
+                            tr.style = "display:inherit;";//将该标签显示出来
+                            var tdx1 = document.getElementById("td" + (i + 1) + 1);
+                            tdx1.innerHTML = i;//序号
+                            var tdx2 = document.getElementById("td" + (i + 1) + 2);
+                            tdx2.innerHTML = resp.nickName;//昵称
+                            var tdx3 = document.getElementById("td" + (i + 1) + 3);
+                            tdx3.innerHTML = resp.email;//邮件
+                            var tdx4 = document.getElementById("td" + (i + 1) + 4);
+                            tdx4.innerHTML = resp.telNumber;//手机号码
+                            var tdx5 = document.getElementById("td" + (i + 1) + 5);
+                            tdx5.innerHTML = resp.regisTime;//注册时间
+
+                        } else if (resp.code == 400) {
+                            alert("获取用户列表失败");
+                            td = document.getElementById("td" + (i + 1));
+                            td.style = "display:inherit;";//将该标签显示出来
+                            var tdx1 = document.getElementById("td" + (i + 1) + 1);
+                            tdx1.innerHTML = "缺失";
+                            var tdx2 = document.getElementById("td" + (i + 1) + 2);
+                            tdx2.innerHTML = "缺失";
+                            var tdx3 = document.getElementById("td" + (i + 1) + 3);
+                            tdx3.innerHTML = "缺失";
+                            var tdx4 = document.getElementById("tr" + (i + 1) + 4);
+                            tdx4.innerHTML = "缺失";
+                            var tdx5 = document.getElementById("tr" + (i + 1) + 5);
+                            tdx5.innerHTML = "缺失";
+                        }
+                    },
+                    error: function (result) {
+                        alert("发生未知错误！请检查自己的网络。" + result);
+                    }
+                });
+            }
+                for (i = 0; i < 4; i++) {
+                    //循环获取风格列表，暂时用户只做4行数据
+                    alert("成功进入风格的for循环第" + (i + 1) + "轮");
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "/adminManage",//后端请求处理的路径
+                        data: {'type':'style', 'i': i},//style表示现在想获取的是风格列表的数据
+                        //前端需要后端返回的response里有code、风格名称、风格效果（文字字符串）、创建风格的用户和创建时间，其中code用于提示是否成功
+                        success: function (resp) {
+                            if (resp.code == 200) {
+                                alert("获取风格列表成功");
+                                //下面是往html中填写数据
+                                tr = document.getElementById("tr" + (i + 1));
+                                tr.style = "display:inherit;";//将该标签显示出来
+                                var tdx1 = document.getElementById("td" + (i + 1) + 1);
+                                tdx1.innerHTML = i;//序号
+                                var tdx2 = document.getElementById("td" + (i + 1) + 2);
+                                tdx2.innerHTML = resp.styleName;//风格名称
+                                var tdx3 = document.getElementById("td" + (i + 1) + 3);
+                                tdx3.innerHTML = resp.styleEffect;//风格效果
+                                var tdx4 = document.getElementById("td" + (i + 1) + 4);
+                                tdx4.innerHTML = resp.createOwner;//创建用户
+                                var tdx5 = document.getElementById("td" + (i + 1) + 5);
+                                tdx5.innerHTML = resp.createTime;//创建时间
+
+                            } else if (resp.code == 400) {
+                                alert("获取风格列表失败");
+                                tr = document.getElementById("tr" + (i + 1));
+                                tr.style = "display:inherit;";//将该标签显示出来
+                                var tdx1 = document.getElementById("td" + (i + 1) + 1);
+                                tdx1.innerHTML = "缺失";
+                                var tdx2 = document.getElementById("td" + (i + 1) + 2);
+                                tdx2.innerHTML = "缺失";
+                                var tdx3 = document.getElementById("td" + (i + 1) + 3);
+                                tdx3.innerHTML = "缺失";
+                                var tdx4 = document.getElementById("td" + (i + 1) + 4);
+                                tdx4.innerHTML = "缺失";
+                                var tdx5 = document.getElementById("td" + (i + 1) + 5);
+                                tdx5.innerHTML = "缺失";
+                            }
+                        },
+                        error: function (result) {
+                            alert("发生未知错误！请检查自己的网络。" + result);
+                        }
+                    });
+
+                }
+
+
+
+
+
+        });
+
+    </script>
+</body>
+
+</html>
