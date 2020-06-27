@@ -117,3 +117,6 @@ venv.bak/
 *.DS_Store
 
 *.ipynb
+
+# personal documentation
+软件工程实践个人总结.docx
